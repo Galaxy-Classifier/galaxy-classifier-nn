@@ -1,2 +1,3 @@
-# galaxy-classifier-nn
+# galaxy-classifier-
+
 Neural network to classify galaxies
