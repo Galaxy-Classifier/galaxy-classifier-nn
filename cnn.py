@@ -7,11 +7,9 @@ Original file is located at
     https://colab.research.google.com/drive/1X8dy_XuNm40LFdnAagOtj0rFijnaaZb5
 """
 from __future__ import absolute_import #To make it compatible with python3
-from google.colab import drive
-
-drive.mount('/content/datasets',force_remount=True)
-
 from __future__ import print_function
+
+
 import glob
 import cv2
 import keras
@@ -44,9 +42,9 @@ def extract_data(path):
 
 np.random.seed(0)
 
-espiral = extract_data("/content/datasets/My Drive/datasetGalaxias70/Espiral/*.jpg")
-elliptical = extract_data("/content/datasets/My Drive/datasetGalaxias70/Elliptical/*.jpg")
-lenticular = extract_data("/content/datasets/My Drive/datasetGalaxias70/Lenticular/*.jpg")
+espiral = extract_data("./data/Espiral/*.jpg")
+elliptical = extract_data("./data/Elliptical/*.jpg")
+lenticular = extract_data("./data/Lenticular/*.jpg")
 
 
 x_test = np.concatenate([espiral, elliptical, lenticular])

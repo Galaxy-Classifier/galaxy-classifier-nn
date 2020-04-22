@@ -9,11 +9,8 @@ Original file is located at
 from __future__ import absolute_import # Added to make compatbile with python 3
 from __future__ import division # Added to make compatbile with python 3
 
-from google.colab import drive
-drive.mount('/content/datasets',force_remount=True)
 
 import glob
-
 import cv2
 import keras
 import matplotlib.pyplot as plt
@@ -29,21 +26,21 @@ def extract_data(path):
     data = []
     files = glob.glob(path)
     for myFile in files:
+        print(myFile)
         image = cv2.imread(myFile)
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         im_resized = cv2.resize(gray_image, (width, height), 
                                 interpolation=cv2.INTER_LINEAR)
         data.append(im_resized)
-
     return np.array(data)
 
 nb_epoch = 1000
 input_dim = width * height
 encoding_dim = int(input_dim / 24.5) 
 
-url_dataset = "/content/datasets/My Drive/datasetGalaxias30/Lenticular/*.jpg"
-url_modelo = "/content/datasets/My Drive/datasetGalaxias70/lenticularTrain.h5"
-ruta_guardado = '/content/datasets/My Drive/datasetGalaxias30/lenticularAutoencoder/lenticular'
+url_dataset = "./data/prueba/*.jpg"
+url_modelo = "./lenticularTrain.h5"
+ruta_guardado = './editData/lenticular'
 digits_display = 5  # how many digits we will display
 total_train = 11
 
