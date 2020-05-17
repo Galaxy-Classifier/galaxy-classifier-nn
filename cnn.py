@@ -73,47 +73,47 @@ batch_size = 256
 epochs = 500
 num_classes = 3
 
-model = Sequential()
-model.add(Conv2D(32, kernel_size=(3, 3), activation='linear', padding='same', input_shape=input_shape))
-model.add(LeakyReLU(alpha=0.1))
-model.add(MaxPooling2D((2, 2), padding='same'))
-model.add(Dropout(0.25))
-model.add(Conv2D(64, (3, 3), activation='linear', padding='same'))
-model.add(LeakyReLU(alpha=0.1))
-model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
-model.add(Dropout(0.25))
-model.add(Conv2D(128, (3, 3), activation='linear', padding='same'))
-model.add(LeakyReLU(alpha=0.1))
-model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
-model.add(Dropout(0.4))
-model.add(Flatten())
-model.add(Dense(128, activation='linear'))
-model.add(LeakyReLU(alpha=0.1))
-model.add(Dropout(0.3))
-model.add(Dense(num_classes, activation='softmax'))
+# model = Sequential()
+# model.add(Conv2D(32, kernel_size=(3, 3), activation='linear', padding='same', input_shape=input_shape))
+# model.add(LeakyReLU(alpha=0.1))
+# model.add(MaxPooling2D((2, 2), padding='same'))
+# model.add(Dropout(0.25))
+# model.add(Conv2D(64, (3, 3), activation='linear', padding='same'))
+# model.add(LeakyReLU(alpha=0.1))
+# model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
+# model.add(Dropout(0.25))
+# model.add(Conv2D(128, (3, 3), activation='linear', padding='same'))
+# model.add(LeakyReLU(alpha=0.1))
+# model.add(MaxPooling2D(pool_size=(2, 2), padding='same'))
+# model.add(Dropout(0.4))
+# model.add(Flatten())
+# model.add(Dense(128, activation='linear'))
+# model.add(LeakyReLU(alpha=0.1))
+# model.add(Dropout(0.3))
+# model.add(Dense(num_classes, activation='softmax'))
 
-model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
+# model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adam(), metrics=['accuracy'])
 
-train = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1, validation_data=(x_test, y_test))
-model.save("/content/datasets/My Drive/datasetGalaxias/galaxiasCNN.h5")
+# train = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1, validation_data=(x_test, y_test))
+# model.save("./galaxiasCNN.h5")
 
-accuracy = train.history['acc']
-val_accuracy = train.history['val_acc']
-loss = train.history['loss']
-val_loss = train.history['val_loss']
-epochs = range(len(accuracy))
-plt.plot(epochs, accuracy, 'bo', label='Training accuracy')
-plt.plot(epochs, val_accuracy, 'b', label='Validation accuracy')
-plt.title('Training and validation accuracy')
-plt.legend()
-plt.figure()
-plt.plot(epochs, loss, 'bo', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
-plt.legend()
-plt.show()
+# accuracy = train.history['acc']
+# val_accuracy = train.history['val_acc']
+# loss = train.history['loss']
+# val_loss = train.history['val_loss']
+# epochs = range(len(accuracy))
+# plt.plot(epochs, accuracy, 'bo', label='Training accuracy')
+# plt.plot(epochs, val_accuracy, 'b', label='Validation accuracy')
+# plt.title('Training and validation accuracy')
+# plt.legend()
+# plt.figure()
+# plt.plot(epochs, loss, 'bo', label='Training loss')
+# plt.plot(epochs, val_loss, 'b', label='Validation loss')
+# plt.title('Training and validation loss')
+# plt.legend()
+# plt.show()
 
-#model = load_model('/content/datasets/My Drive/datasetGalaxias/galaxiasCNN.h5')
+model = load_model('./galaxiasCNN.h5')
 
 
 score = model.evaluate(x_test, y_test, verbose=0)
