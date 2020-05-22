@@ -7,20 +7,19 @@ class Autoencoder(object):
         
         # Encoding
         input_layer = Input(shape=(100, 100, 1))
-        #input_layer = Input(shape=(32, 32, 1)) 
-        encoding_conv_layer_1 = Conv2D(16, (3, 3), activation='relu', padding='same')(input_layer)
+        encoding_conv_layer_1 = Conv2D(75, (3, 3), activation='relu', padding='same')(input_layer)
         encoding_pooling_layer_1 = MaxPooling2D((2, 2), padding='same')(encoding_conv_layer_1)
-        encoding_conv_layer_2 = Conv2D(8, (3, 3), activation='relu', padding='same')(encoding_pooling_layer_1)
+        encoding_conv_layer_2 = Conv2D(50, (3, 3), activation='relu', padding='same')(encoding_pooling_layer_1)
         encoding_pooling_layer_2 = MaxPooling2D((2, 2), padding='same')(encoding_conv_layer_2)
-        encoding_conv_layer_3 = Conv2D(8, (3, 3), activation='relu', padding='same')(encoding_pooling_layer_2)
+        encoding_conv_layer_3 = Conv2D(50, (3, 3), activation='relu', padding='same')(encoding_pooling_layer_2)
         code_layer = MaxPooling2D((2, 2), padding='same')(encoding_conv_layer_3)
         
         # Decoding
-        decodging_conv_layer_1 = Conv2D(8, (3, 3), activation='relu', padding='same')(code_layer)
+        decodging_conv_layer_1 = Conv2D(50, (3, 3), activation='relu', padding='same')(code_layer)
         decodging_upsampling_layer_1 = UpSampling2D((2, 2))(decodging_conv_layer_1)
-        decodging_conv_layer_2 = Conv2D(8, (3, 3), activation='relu', padding='same')(decodging_upsampling_layer_1)
+        decodging_conv_layer_2 = Conv2D(50, (3, 3), activation='relu', padding='same')(decodging_upsampling_layer_1)
         decodging_upsampling_layer_2 = UpSampling2D((2, 2))(decodging_conv_layer_2)
-        decodging_conv_layer_3 = Conv2D(16, (3, 3), activation='relu')(decodging_upsampling_layer_2)
+        decodging_conv_layer_3 = Conv2D(75, (3, 3), activation='relu')(decodging_upsampling_layer_2)
         decodging_upsampling_layer_3 = UpSampling2D((2, 2))(decodging_conv_layer_3)
         output_layer = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(decodging_upsampling_layer_3)
         
